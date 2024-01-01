@@ -18,6 +18,7 @@ export async function getAISuggestionmyhotstar(request: HttpRequest, context: In
     context.log(`Http function processed request for url "${request.url}"`);
 
     const term= request.query.get("term");
+    console.log("Search Term >>> ", term);
 
     const completion = await openai.chat.completions.create({
         messages: [
@@ -37,7 +38,7 @@ export async function getAISuggestionmyhotstar(request: HttpRequest, context: In
    
 
     return { body: completion.choices[0].message.content|| "No Suggestion" };
-};
+}
 
 app.http('getAISuggestionmyhotstar', {
     methods: ['GET'],
